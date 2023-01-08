@@ -6,4 +6,9 @@
   background-repeat: no-repeat;
   grid-area: like;
   justify-self: end;
+  transition: opacity .3s;
+}
+
+.card__like:hover {
+  opacity: .5;
 }

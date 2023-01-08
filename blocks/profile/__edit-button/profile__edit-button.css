@@ -7,6 +7,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   grid-area: button;
+  transition: opacity .3s;
+}
+
+.profile__edit-button:hover {
+  opacity: .6;
 }
 
 
