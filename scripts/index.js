@@ -14,7 +14,6 @@ function closePopup() {
 
 function openPopup() {
   popup.classList.add('popup_opened');
-  document.querySelector('.popup__container').classList.add('popup__container_shown');
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;  
 }
