@@ -7,67 +7,67 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
-<body>
-  <div class="page">
-    <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
-    </header>
-    <main class="main">
-      <section class="profile">
-        <img src="./images/avatar.jpg" alt="Аватар профиля" class="profile__avatar">
-        <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
-        </div>
-        <button class="profile__add-button" type="button"></button>
-        <div class="popup">
-          <form class="popup__container">
-            <button class="popup__close-btn" type="button"></button>
-            <h2 class="popup__head">Редактировать профиль</h2>
-            <input type="text" class="popup__edit-profile edit-title">
-            <input type="text" class="popup__edit-profile edit-subtitle">
-            <button class="popup__save-btn" type="submit">Сохранить</button>
-          </form>
-        </div>
-      </section>
-      <section class="cards">
-        <div class="card">
-          <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__photo">
-          <h2 class="card__title">Карачаевск</h2>
-          <div class="card__like"></div>
-        </div>
-        <div class="card">
-          <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="card__photo">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <div class="card__like"></div>
-        </div>
-        <div class="card">
-          <img src="./images/dombai.jpg" alt="Домбай" class="card__photo">
-          <h2 class="card__title">Домбай</h2>
-          <div class="card__like"></div>
-        </div>
-        <div class="card">
-          <img src="./images/kamchatka.jpg" alt="Камчатка" class="card__photo">
-          <h2 class="card__title">Камчатка</h2>
-          <div class="card__like"></div>
-        </div>
-        <div class="card">
-          <img src="./images/kurshskaya.jpg" alt="Куршская коса" class="card__photo">
-          <h2 class="card__title">Куршская коса</h2>
-          <div class="card__like"></div>
-        </div>
-        <div class="card">
-          <img src="./images/karelia.jpg" alt="Карелия" class="card__photo">
-          <h2 class="card__title">Карелия</h2>
-          <div class="card__like"></div>
-        </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
-    </footer>
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+  </header>
+  <main class="main">
+    <section class="profile">
+      <img src="./images/avatar.jpg" alt="Аватар профиля" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <button aria-label="Редактировать профиль" class="profile__edit-button" type="button"></button>
+        <p class="profile__subtitle">Исследователь океана</p>
+      </div>
+      <button aria-label="Добавить" class="profile__add-button" type="button"></button>
+    </section>
+    <section aria-label="Фотографии профиля" class="cards">
+      <article class="card">
+        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__photo">
+        <h2 class="card__title">Карачаевск</h2>
+        <button aria-label="Нравится" class="card__like" type="button"></button>
+      </article>
+      <article class="card">
+        <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="card__photo">
+        <h2 class="card__title">Гора Эльбрус</h2>
+        <button aria-label="Нравится" class="card__like" type="button"></button>
+      </article>
+      <article class="card">
+        <img src="./images/dombai.jpg" alt="Домбай" class="card__photo">
+        <h2 class="card__title">Домбай</h2>
+        <button aria-label="Нравится" class="card__like" type="button"></button>
+      </article>
+      <article class="card">
+        <img src="./images/kamchatka.jpg" alt="Камчатка" class="card__photo">
+        <h2 class="card__title">Камчатка</h2>
+        <button aria-label="Нравится" class="card__like" type="button"></button>
+      </article>
+      <article class="card">
+        <img src="./images/kurshskaya.jpg" alt="Куршская коса" class="card__photo">
+        <h2 class="card__title">Куршская коса</h2>
+        <button aria-label="Нравится" class="card__like" type="button"></button>
+      </article>
+      <article class="card">
+        <img src="./images/karelia.jpg" alt="Карелия" class="card__photo">
+        <h2 class="card__title">Карелия</h2>
+        <button aria-label="Нравится" class="card__like" type="button"></button>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
+  </footer>
+  <div class="popup">
+    <div class="popup__container">
+      <button aria-label="Закрыть" class="popup__close-btn" type="button"></button>
+      <form class="popup__form" name="edit-form">
+        <h2 class="popup__head">Редактировать профиль</h2>
+        <input type="text" class="popup__field popup__field_edit_name" name="name">
+        <input type="text" class="popup__field popup__field_edit_job" name="job">
+        <button class="popup__save-btn" type="submit">Сохранить</button>
+      </form>
+    </div>
   </div>
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

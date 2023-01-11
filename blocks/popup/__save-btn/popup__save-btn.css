@@ -19,5 +19,6 @@
   .popup__save-btn {
     font-size: 18px;
     line-height: 22px;
+    height: 50px;
   }
 }

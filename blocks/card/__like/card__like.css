@@ -3,9 +3,11 @@
   height: 19px;
   margin-right: 20px;
   background-image: url('../../../images/like-disabled.svg');
+  background-color: transparent;
   background-repeat: no-repeat;
   grid-area: like;
   justify-self: end;
+  border: none;
   transition: opacity .3s, background-image .3s;
   cursor: pointer;
 }

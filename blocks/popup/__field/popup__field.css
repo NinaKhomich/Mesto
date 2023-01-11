@@ -1,4 +1,4 @@
-.popup__edit-profile {
+.popup__field {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   height: 27px;
@@ -8,22 +8,23 @@
   padding-bottom: 10px;
   padding-left: 0;
   box-sizing: border-box;
+  width: 100%;
 }
 
-.popup__edit-profile:first-of-type {
-  margin-bottom: 30px;
+.popup__field:first-of-type {
+  margin-bottom: 29px;
 }
 
-.popup__edit-profile:last-of-type {
+.popup__field:last-of-type {
   margin-bottom: 44px;
 }
 
-.popup__edit-profile::placeholder {
+.popup__field::placeholder {
   color: #000;
 }
 
 @media screen and (min-width: 768px) {
-  .popup__edit-profile:last-of-type {
-    margin-bottom: 50px;
+  .popup__field:last-of-type {
+    margin-bottom: 47px;
   }
 }
