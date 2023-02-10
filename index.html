@@ -26,7 +26,8 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+
+  <div class="popup popup_type_edit-profile">
     <div class="popup__container">
       <button aria-label="Закрыть" class="popup__close-btn" type="button"></button>
       <form class="popup__form" name="edit-form">
@@ -37,6 +38,19 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_add-card">
+    <div class="popup__container">
+      <button aria-label="Закрыть" class="popup__close-btn" type="button"></button>
+      <form class="popup__form" name="add-card">
+        <h2 class="popup__head">Новое место</h2>
+        <input type="text" class="popup__field popup__field_add_title" name="title" placeholder="Название">
+        <input type="url" class="popup__field popup__field_add_link" name="link" placeholder="Ссылка на картинку">
+        <button class="popup__save-btn" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
   <template id="card-template">
     <article class="card">
       <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__photo">
