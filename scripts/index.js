@@ -87,6 +87,12 @@ popupBtnsClose.forEach((item) => {
   });
 });
 
+document.querySelector('.cards').addEventListener('click', event => {
+  if (event.target.classList.contains('card__like')) {
+    event.target.classList.toggle('card__like_active');
+  }
+});
+
 popupEditProfileOpen.addEventListener('click', openPopupEditProfile);
 formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 popupAddCardOpen.addEventListener('click', openAddCardPopup);
