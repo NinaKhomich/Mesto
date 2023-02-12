@@ -13,7 +13,12 @@
 @import url('../blocks/profile/__add-button/profile__add-button.css');
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
+@import url('../blocks/popup/_type/popup_type_photo.css');
+@import url('../blocks/popup/__img/popup__img.css');
+@import url('../blocks/popup/__photo/popup__photo.css');
+@import url('../blocks/popup/__img-title/popup__img-title.css');
 @import url('../blocks/popup/__container/popup__container.css');
+@import url('../blocks/popup/__container/_type/popup__container_type_photo.css');
 @import url('../blocks/popup/__close-btn/popup__close-btn.css');
 @import url('../blocks/popup/__head/popup__head.css');
 @import url('../blocks/popup/__field/popup__field.css');

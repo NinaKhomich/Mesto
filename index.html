@@ -24,7 +24,7 @@
     <section aria-label="Фотографии профиля" class="cards"></section>
   </main>
   <footer class="footer">
-    <p class="footer__copyright">© 2020 Mesto Russia</p>
+    <p class="footer__copyright">© 2023 Mesto Russia</p>
   </footer>
 
   <div class="popup popup_type_edit-profile">
@@ -51,9 +51,19 @@
     </div>
   </div>
 
+  <div class="popup popup_type_photo">
+    <div class="popup__container popup__container_type_photo">
+      <button aria-label="Закрыть" class="popup__close-btn" type="button"></button>
+      <figure class="popup__img">
+        <img class="popup__photo">
+        <figcaption class="popup__img-title"></figcaption>
+      </figure>
+    </div>
+  </div>
+
   <template id="card-template">
     <article class="card">
-      <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__photo">
+      <img class="card__photo">
       <h2 class="card__title"></h2>
       <button aria-label="Нравится" class="card__like" type="button"></button>
       <button aria-label="Удалить" class="card__delete" type="button"></button>

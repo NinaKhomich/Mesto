@@ -25,30 +25,53 @@ const initialCards = [
   }
 ];
 
-let profileElement = document.querySelector('.profile');
-let popupBtnsClose = document.querySelectorAll('.popup__close-btn');
+const profileElement = document.querySelector('.profile');
+const popupBtnsClose = document.querySelectorAll('.popup__close-btn');
 
-let popupEditProfileOpen = profileElement.querySelector('.profile__edit-button');
-let popupEditProfile = document.querySelector('.popup_type_edit-profile');
-let formEditProfile = popupEditProfile.querySelector('.popup__form');
-let nameInput = formEditProfile.querySelector('.popup__field_edit_name');
-let jobInput = formEditProfile.querySelector('.popup__field_edit_job');
-let profileTitle = profileElement.querySelector('.profile__title');
-let profileSubtitle = profileElement.querySelector('.profile__subtitle');
+const popupEditProfileOpen = profileElement.querySelector('.profile__edit-button');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const formEditProfile = popupEditProfile.querySelector('.popup__form');
+const nameInput = formEditProfile.querySelector('.popup__field_edit_name');
+const jobInput = formEditProfile.querySelector('.popup__field_edit_job');
+const profileTitle = profileElement.querySelector('.profile__title');
+const profileSubtitle = profileElement.querySelector('.profile__subtitle');
 
-let popupAddCardOpen = profileElement.querySelector('.profile__add-button');
-let popupAddCard = document.querySelector('.popup_type_add-card');
-let formAddCard = popupAddCard.querySelector('.popup__form');
-let cardTitleInput = formAddCard.querySelector('.popup__field_add_title');
-let cardPhotoInput = formAddCard.querySelector('.popup__field_add_link');
+const popupAddCardOpen = profileElement.querySelector('.profile__add-button');
+const popupAddCard = document.querySelector('.popup_type_add-card');
+const formAddCard = popupAddCard.querySelector('.popup__form');
+const cardTitleInput = formAddCard.querySelector('.popup__field_add_title');
+const cardPhotoInput = formAddCard.querySelector('.popup__field_add_link');
 const cards = document.querySelector('.cards');
+const popupPhotoView = document.querySelector('.popup_type_photo');
+const popupPhoto = popupPhotoView.querySelector('.popup__photo');
+const popupPhotoTitle = popupPhotoView.querySelector('.popup__img-title');
 
 function addCard(titleValue, photoLink) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardPhoto = cardElement.querySelector('.card__photo');
+  const cardLike = cardElement.querySelector('.card__like');
+  const cardDelete = cardElement.querySelector('.card__delete');
+  const cardTitle = cardElement.querySelector('.card__title');
+  
+  cardTitle.textContent = titleValue;
+  cardPhoto.src = photoLink;
+  cardPhoto.alt = titleValue;
 
-  cardElement.querySelector('.card__title').textContent = titleValue;
-  cardElement.querySelector('.card__photo').src = photoLink;
+  cardLike.addEventListener('click', () => {
+    cardLike.classList.toggle('card__like_active');
+  });
+
+  cardDelete.addEventListener('click', () => {
+    cardElement.remove();
+  });
+
+  cardPhoto.addEventListener('click', () => {
+    popupPhotoView.classList.add('popup_opened');
+    popupPhoto.src = photoLink;
+    popupPhoto.alt = titleValue;
+    popupPhotoTitle.textContent = titleValue;
+  });
 
   return cardElement;
 }
@@ -87,17 +110,7 @@ popupBtnsClose.forEach((item) => {
   });
 });
 
-cards.addEventListener('click', event => {
-  if (event.target.classList.contains('card__like')) {
-    event.target.classList.toggle('card__like_active');
-  }
-  if (event.target.classList.contains('card__delete')) {
-    event.target.closest('.card').remove();
-  }
-});
-
 popupEditProfileOpen.addEventListener('click', openPopupEditProfile);
 formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
 popupAddCardOpen.addEventListener('click', openAddCardPopup);
 formAddCard.addEventListener('submit', handleFormAddCardSubmit);
-
