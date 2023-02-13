@@ -32,8 +32,8 @@
       <button aria-label="Закрыть" class="popup__close-btn" type="button"></button>
       <form class="popup__form" name="edit-form">
         <h2 class="popup__head">Редактировать профиль</h2>
-        <input type="text" class="popup__field popup__field_edit_name" name="name">
-        <input type="text" class="popup__field popup__field_edit_job" name="job">
+        <input type="text" class="popup__field popup__field_edit_name" required name="name" placeholder="Имя">
+        <input type="text" class="popup__field popup__field_edit_job" required name="job" placeholder="Профессия">
         <button class="popup__save-btn" type="submit">Сохранить</button>
       </form>
     </div>
@@ -44,8 +44,8 @@
       <button aria-label="Закрыть" class="popup__close-btn" type="button"></button>
       <form class="popup__form" name="add-card">
         <h2 class="popup__head">Новое место</h2>
-        <input type="text" class="popup__field popup__field_add_title" name="title" placeholder="Название">
-        <input type="url" class="popup__field popup__field_add_link" name="link" placeholder="Ссылка на картинку">
+        <input type="text" class="popup__field popup__field_add_title" required name="title" placeholder="Название">
+        <input type="url" class="popup__field popup__field_add_link" required name="link" placeholder="Ссылка на картинку">
         <button class="popup__save-btn" type="submit">Создать</button>
       </form>
     </div>
@@ -69,6 +69,7 @@
       <button aria-label="Удалить" class="card__delete" type="button"></button>
     </article>
   </template>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
