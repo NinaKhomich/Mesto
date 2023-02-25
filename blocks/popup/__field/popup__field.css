@@ -9,22 +9,11 @@
   padding-left: 0;
   box-sizing: border-box;
   width: 100%;
-}
-
-.popup__field:first-of-type {
-  margin-bottom: 29px;
-}
-
-.popup__field:last-of-type {
-  margin-bottom: 44px;
+  outline: 0;
 }
 
 .popup__field::placeholder {
-  color: #000;
-}
-
-@media screen and (min-width: 768px) {
-  .popup__field:last-of-type {
-    margin-bottom: 47px;
-  }
+  font-size: 14px;
+  line-height: 17px;
+  color: #C4C4C4;
 }

@@ -2,16 +2,16 @@ const profileElement = document.querySelector('.profile');
 const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
 const buttonPopupEditProfileOpen = profileElement.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const formEditProfile = popupEditProfile.querySelector('.popup__form');
-const nameInput = formEditProfile.querySelector('.popup__field_edit_name');
-const jobInput = formEditProfile.querySelector('.popup__field_edit_job');
+const formEditProfile = document.forms.editForm;
+const nameInput = formEditProfile.elements.name;
+const jobInput = formEditProfile.elements.job;
 const profileTitle = profileElement.querySelector('.profile__title');
 const profileSubtitle = profileElement.querySelector('.profile__subtitle');
-const popupAddCardOpen = profileElement.querySelector('.profile__add-button');
+const buttonPopupAddCardOpen = profileElement.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_type_add-card');
-const formAddCard = popupAddCard.querySelector('.popup__form');
-const cardTitleInput = formAddCard.querySelector('.popup__field_add_title');
-const cardPhotoInput = formAddCard.querySelector('.popup__field_add_link');
+const formAddCard = document.forms.addCard;
+const cardTitleInput = formAddCard.elements.title;
+const cardPhotoInput = formAddCard.elements.link;
 const cards = document.querySelector('.cards');
 const popupPhotoView = document.querySelector('.popup_type_photo');
 const popupPhoto = popupPhotoView.querySelector('.popup__photo');
@@ -71,13 +71,13 @@ function handleFormAddCardSubmit (evt) {
   };
   renderCard(newCardPhoto);
   closePopup(popupAddCard);
-  formAddCard.reset();
 }
 
 function openPopupEditProfile() {
   openPopup(popupEditProfile);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
+  hideStartErrorMessage(formEditProfile);
 }
 
 function handleFormEditProfileSubmit (evt) {
@@ -88,7 +88,9 @@ function handleFormEditProfileSubmit (evt) {
 }
 
 function openAddCardPopup() {
+  formAddCard.reset();
   openPopup(popupAddCard);
+  hideStartErrorMessage(formAddCard);
 }
 
 initialCards.forEach((card) => {
@@ -103,5 +105,5 @@ popupCloseBtns.forEach((button) => {
 
 buttonPopupEditProfileOpen.addEventListener('click', openPopupEditProfile);
 formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
-popupAddCardOpen.addEventListener('click', openAddCardPopup);
+buttonPopupAddCardOpen.addEventListener('click', openAddCardPopup);
 formAddCard.addEventListener('submit', handleFormAddCardSubmit);
