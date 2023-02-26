@@ -18,7 +18,6 @@ const popupPhotoTitle = popupPhotoView.querySelector('.popup__img-title');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  handleEscClosePopup(popup);
   handleClickClosePopup(popup);
   document.addEventListener('keydown', handleEscClosePopup);
 }
@@ -96,7 +95,7 @@ function openPopupEditProfile() {
   openPopup(popupEditProfile);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-  hideStartErrorMessage(formEditProfile);
+  hideStartErrorMessage(formEditProfile, validationClasses);
 }
 
 function handleFormEditProfileSubmit (evt) {
@@ -109,7 +108,7 @@ function handleFormEditProfileSubmit (evt) {
 function openAddCardPopup() {
   formAddCard.reset();
   openPopup(popupAddCard);
-  hideStartErrorMessage(formAddCard);
+  hideStartErrorMessage(formAddCard, validationClasses);
 }
 
 initialCards.forEach((card) => {
