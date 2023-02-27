@@ -18,32 +18,31 @@ const popupPhotoTitle = popupPhotoView.querySelector('.popup__img-title');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  handleClickClosePopup(popup);
+  popup.addEventListener('click', handleClickClosePopup);
   document.addEventListener('keydown', handleEscClosePopup);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('click', handleClickClosePopup);
   document.removeEventListener('keydown', handleEscClosePopup);
 }
 
 function handleEscClosePopup(evt) {
-    if (evt.key === 'Escape') {
-      const popupOpened = document.querySelector('.popup_opened');
-      closePopup(popupOpened);
-    }
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  }
 }
 
-function handleClickClosePopup(popup) {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened') || 
-        evt.target.classList.contains('popup__close-btn')) {
-      closePopup(popup);
-    }
-  });
+function handleClickClosePopup(evt) {
+  if (evt.target.classList.contains('popup_opened') || 
+      evt.target.classList.contains('popup__close-btn')) {
+    closePopup(evt.currentTarget);
+  }
 }
 
-function addCard(cardData) {
+function createCard(cardData) {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardPhoto = cardElement.querySelector('.card__photo');
@@ -78,7 +77,7 @@ function addCard(cardData) {
 }
 
 function renderCard(cardData) {
-  cards.prepend(addCard(cardData));
+  cards.prepend(createCard(cardData));
 }
 
 function handleFormAddCardSubmit (evt) {
@@ -95,7 +94,7 @@ function openPopupEditProfile() {
   openPopup(popupEditProfile);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-  hideStartErrorMessage(formEditProfile, validationClasses);
+  resetValidation(formEditProfile, validationSettings);
 }
 
 function handleFormEditProfileSubmit (evt) {
@@ -108,12 +107,10 @@ function handleFormEditProfileSubmit (evt) {
 function openAddCardPopup() {
   formAddCard.reset();
   openPopup(popupAddCard);
-  hideStartErrorMessage(formAddCard, validationClasses);
+  resetValidation(formAddCard, validationSettings);
 }
 
-initialCards.forEach((card) => {
-  renderCard(card);
-});
+initialCards.forEach(renderCard);
 
 buttonPopupEditProfileOpen.addEventListener('click', openPopupEditProfile);
 formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
