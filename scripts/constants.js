@@ -33,3 +33,5 @@ const validationSettings = {
   inputErrorClass: 'popup__field_type_error',
   errorClass: 'popup__field-error_active'
 };
+
+export { initialCards, validationSettings };
