@@ -1,4 +1,5 @@
 import { Card } from './Card.js';
+import { cards, popupPhoto, popupPhotoTitle } from './utils.js';
 import { initialCards, validationSettings } from './constants.js';
 import { FormValidator } from './FormValidator.js';
 
@@ -15,16 +16,12 @@ const popupAddCard = document.querySelector('.popup_type_add-card');
 const formAddCard = document.forms.addCard;
 const cardTitleInput = formAddCard.elements.title;
 const cardPhotoInput = formAddCard.elements.link;
-const cards = document.querySelector('.cards');
-const popupPhotoView = document.querySelector('.popup_type_photo');
-const popupPhoto = popupPhotoView.querySelector('.popup__photo');
-const popupPhotoTitle = popupPhotoView.querySelector('.popup__img-title');
 
 const formEditProfileValidation = new FormValidator(validationSettings, formEditProfile);
 const formAddCardValidation = new FormValidator(validationSettings, formAddCard);
 
-function renderCard(cardData, templateElement) {
-  const card = new Card(cardData, templateElement);
+function renderCard(cardData, templateElement, openPopupPhoto) {
+  const card = new Card(cardData, templateElement, openPopupPhoto);
   const cardElement = card.generateCard();
 
   cards.prepend(cardElement);
@@ -32,13 +29,13 @@ function renderCard(cardData, templateElement) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('click', handleClickClosePopup);
+  popup.addEventListener('mousedown', handleClickClosePopup);
   document.addEventListener('keydown', handleEscClosePopup);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('click', handleClickClosePopup);
+  popup.removeEventListener('mousedown', handleClickClosePopup);
   document.removeEventListener('keydown', handleEscClosePopup);
 }
 
@@ -62,10 +59,9 @@ function handleFormAddCardSubmit (evt) {
     name: cardTitleInput.value,
     link: cardPhotoInput.value
   };
-  renderCard(newCardPhoto, '#card-template');
+  renderCard(newCardPhoto, '#card-template', openPopup);
   closePopup(popupAddCard);
 }
-
 
 function openPopupEditProfile() {
   openPopup(popupEditProfile);
@@ -88,9 +84,8 @@ function openAddCardPopup() {
 }
 
 initialCards.forEach((card) => {
-  renderCard(card, '#card-template')
+  renderCard(card, '#card-template', openPopup);
 });
-
 
 buttonPopupEditProfileOpen.addEventListener('click', openPopupEditProfile);
 formEditProfile.addEventListener('submit', handleFormEditProfileSubmit);
@@ -99,5 +94,3 @@ formAddCard.addEventListener('submit', handleFormAddCardSubmit);
 
 formEditProfileValidation.enableValidation();
 formAddCardValidation.enableValidation();
-
-export { openPopup, cards, popupPhotoView, popupPhotoTitle, popupPhoto };
