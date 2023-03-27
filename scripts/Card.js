@@ -1,11 +1,9 @@
-import { popupPhotoView, popupPhotoTitle, popupPhoto } from './utils.js';
-
-class Card {
-  constructor(cardData, templateElement, openPopupPhoto) {
+export default class Card {
+  constructor(cardData, templateElement, handleCardClick) {
     this._name = cardData.name,
     this._link = cardData.link,
     this._templateElement = templateElement,
-    this._openPopupPhoto = openPopupPhoto
+    this._handleCardClick = handleCardClick
   }
   
   _getTemplate() {
@@ -37,14 +35,7 @@ class Card {
 
   _deleteCard() {
     this._element.remove();
-    this._element = null; // если верно поняла слово зануллить
-  }
-
-  _openPopupPhotoView() {
-    this._openPopupPhoto(popupPhotoView);
-    popupPhoto.src = this._link;
-    popupPhoto.alt = this._name;
-    popupPhotoTitle.textContent = this._name;
+    this._element = null;
   }
 
   _setEventListeners() {
@@ -57,9 +48,7 @@ class Card {
     });
 
     this._elementPhoto.addEventListener('click', () => {
-      this._openPopupPhotoView();
+      this._handleCardClick(this._name, this._link);
     });
   }
 }
-
-export { Card };
