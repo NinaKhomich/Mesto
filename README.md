@@ -15,6 +15,7 @@
 * создание и удаление элементов в DOM при помощи Javascript,
 * валидация форм,
 * использование ООП в Javascript,
+* настройка и работа с Webpack
 * работа с Git.
 
 [Ссылка на GitHub Pages](https://ninakhomich.github.io/second-project-gh-pages/)

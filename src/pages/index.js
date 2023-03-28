@@ -1,16 +1,17 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import UserInfo from './UserInfo.js';
-import { initialCards, validationSettings } from './constants.js';
+import './index.css';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+import { initialCards, validationSettings } from '../utils/constants.js';
 import { buttonPopupEditProfileOpen,
   formEditProfile,
   nameInput,
   jobInput,
   buttonPopupAddCardOpen,
-  formAddCard } from './utils.js';
+  formAddCard } from '../utils/utils.js';
 
 const formEditProfileValidation = new FormValidator(validationSettings, formEditProfile);
 const formAddCardValidation = new FormValidator(validationSettings, formAddCard);
@@ -30,21 +31,14 @@ const cardsList = new Section({
 }, '.cards');
 
 const popupAddCard = new PopupWithForm('.popup_type_add-card', (formValues) => {
-  const userCardPhoto = {
+  cardsList.addItem(renderCard({
     name: formValues.title,
     link: formValues.link 
-  }
-
-  cardsList.addItem(renderCard(userCardPhoto));
+  }));
+  popupAddCard.close();
 })
 
 const popupPhotoView = new PopupWithImage('.popup_type_photo');
-
-buttonPopupAddCardOpen.addEventListener('click', function() {
-  popupAddCard.open();
-  formAddCardValidation.resetValidation();
-});
-
 const userProfileInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
 const popupEditProfileForm = new PopupWithForm('.popup_type_edit-profile', (formValues) => {
@@ -52,16 +46,22 @@ const popupEditProfileForm = new PopupWithForm('.popup_type_edit-profile', (form
     name: formValues.name,
     job: formValues.job
   });
+  popupEditProfileForm.close();
 })
 
 buttonPopupEditProfileOpen.addEventListener('click', () => {
-  popupEditProfileForm.open();
-
   const profileEditFormInfo = userProfileInfo.getUserInfo();
+  
   nameInput.value = profileEditFormInfo.name;
   jobInput.value = profileEditFormInfo.job;
-
+  
+  popupEditProfileForm.open();
   formEditProfileValidation.resetValidation();
+});
+
+buttonPopupAddCardOpen.addEventListener('click', function() {
+  popupAddCard.open();
+  formAddCardValidation.resetValidation();
 });
 
 cardsList.renderItems();
