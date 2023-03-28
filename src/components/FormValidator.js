@@ -30,20 +30,18 @@ export default class FormValidator {
     });
   }
 
-  _toggleInputErrorState() {
-    this._inputList.forEach((inputElement) => {
+  _toggleInputErrorState(inputElement) {
       if (!inputElement.validity.valid) {
         this._showInputError(inputElement);
       } else {
         this._hideInputError(inputElement);
       }
-    });
   }
 
   _setEventListeners() {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._toggleInputErrorState();
+        this._toggleInputErrorState(inputElement);
         this._toggleButtonSubmitState();
       })
     }

@@ -20,11 +20,11 @@ export default class Popup {
   }
 
   _handleClickClose = (evt) => {
-      if (evt.target.classList.contains('popup_opened') || 
-        evt.target.classList.contains('popup__close-btn')) {
-        this.close();
-        }
-      }
+    if (evt.target.classList.contains('popup_opened') || 
+      evt.target.classList.contains('popup__close-btn')) {
+      this.close();
+    }
+  }
   
   _removeEventListeners() {
     this._popup.removeEventListener('mousedown', this._handleClickClose);

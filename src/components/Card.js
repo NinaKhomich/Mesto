@@ -35,6 +35,8 @@ export default class Card {
 
   _deleteCard() {
     this._element.remove();
+    this._elementPhoto = null;
+    this._elementLike = null;
     this._element = null;
   }
 

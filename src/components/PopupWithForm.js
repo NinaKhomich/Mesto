@@ -9,20 +9,19 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    // создаём пустой объект
-    this._formValues = {};
+    const formValues = {};
 
-    // добавляем в этот объект значения всех полей
     this._inputList.forEach(input => {
-      this._formValues[input.name] = input.value;
+      formValues[input.name] = input.value;
     });
-    // возвращаем объект значений
-    return this._formValues;
+    
+    return formValues;
   }
 
   _submitForm = (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());
+    this.close();
   }
 
   setEventListeners() {
