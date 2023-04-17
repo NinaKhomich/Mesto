@@ -45,19 +45,19 @@ export default class Card {
 
   _likeCardPhoto() {
     if(this._elementLike.classList.contains('card__like_active')) {
-      this._elementLike.classList.remove('card__like_active');
       this._handleCardDeleteLike(this._cardData._id);
     } else {
-      this._elementLike.classList.add('card__like_active');
       this._handleCardPutLike(this._cardData._id);
     }
   }
   
   setlikeCardPhoto(res) {
+    this._elementLike.classList.add('card__like_active');
     this._elementLikesNumber.textContent = res.likes.length;
   }
-
+  
   deleteLikeCardPhoto(res) {
+    this._elementLike.classList.remove('card__like_active');
     this._elementLikesNumber.textContent = res.likes.length;
   }
   
