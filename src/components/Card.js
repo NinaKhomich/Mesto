@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(cardData, elementWithUserId, templateElement, handleCardClicks) {
+  constructor(cardData, userId, templateElement, handleCardClicks) {
     this._cardData = cardData,
     this._name = this._cardData.name,
     this._link = this._cardData.link,
-    this._userId = elementWithUserId.getAttribute('id'),
+    this._userId = userId,
     this._templateElement = templateElement,
     this._handleCardOpenPhoto = handleCardClicks.openPhoto,
     this._handleCardOpenDelete = handleCardClicks.deleteCardPopup,
@@ -33,10 +33,10 @@ export default class Card {
     this._elementPhoto.alt = this._name;
     this._elementName.textContent = this._name;
     this._elementLikesNumber.textContent = this._cardData.likes.length;
-    if (this._cardData.likes.find(likes => likes._id === this._userId)) { 
+    if (this._cardData.likes.find(likes => likes._id === this._userId)) {
       this._elementLike.classList.add('card__like_active');
     };
-   
+
     this._setEventListeners();
     this._removeBasket();
 
@@ -55,8 +55,8 @@ export default class Card {
   
   setlikeCardPhoto(res) {
     this._elementLikesNumber.textContent = res.likes.length;
-  } 
-    
+  }
+
   deleteLikeCardPhoto(res) {
     this._elementLikesNumber.textContent = res.likes.length;
   }
@@ -78,7 +78,7 @@ export default class Card {
     this._elementLike.addEventListener('click', () => {
       this._likeCardPhoto();
     });
-      
+    
     this._elementDeleteButton.addEventListener('click', () => {
       this._handleCardOpenDelete(this, this._cardData._id);
     });

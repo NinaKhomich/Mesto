@@ -5,7 +5,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithConfirmation from '../components/PopupConfirmation';
+import PopupWithConfirmation from '../components/PopupWithConfirmation';
 import UserInfo from '../components/UserInfo.js';
 import { validationSettings, apiSettings } from '../utils/constants.js';
 import { buttonPopupEditProfileOpen,
@@ -16,27 +16,19 @@ import { buttonPopupEditProfileOpen,
   formAddCard,
   formEditAvatar,
   buttonPopupEditAvatarOpen
- } from '../utils/elements.js';
+} from '../utils/elements.js';
 
 const formEditProfileValidation = new FormValidator(validationSettings, formEditProfile);
 const formAddCardValidation = new FormValidator(validationSettings, formAddCard);
-const formEditAvatarValidation = new FormValidator(validationSettings, formEditAvatar)
+const formEditAvatarValidation = new FormValidator(validationSettings, formEditAvatar);
 
 const api = new Api(apiSettings);
 const userProfileInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
-// настройка информации профиля
-api.setProfileInfo()
-.then((userObject) => {
-  userProfileInfo.setUserInfo(userObject);
-  userProfileInfo.setUserAvatar(userObject);
-})
-.catch(err => console.log(`Невозможо загрузить данные профиля. Ошибка: ${err})`));
-
 // функция генерации карточки
 function createCard(cardData) {
-  const card = new Card(cardData, document.querySelector('.profile__title'), '#card-template', {
-    openPhoto: popupPhotoView.open.bind(popupPhotoView), 
+  const card = new Card(cardData, userId, '#card-template', {
+    openPhoto: popupPhotoView.open.bind(popupPhotoView),
     deleteCardPopup: popupDeleteCard.open.bind(popupDeleteCard),
     putLike: (cardId) => { api.putLike(cardId)
       .then((res) => {
@@ -66,16 +58,26 @@ const popupDeleteCard = new PopupWithConfirmation('.popup_type_delete-card', (ca
 });
 
 const cardsList = new Section({
-  renderer: (cardItem) => {    
+  renderer: (cardItem) => {
     cardsList.addItem(createCard(cardItem));
   }
 }, '.cards');
 
-// заполнение страницы карточками с сервера
-api.getInitialCards().then((result) => {
-  cardsList.renderItems(result.reverse());
+// получения данных из одного запроса с дальнейшим их использованием в следующем запросе,
+// получаем userId при загрузке данных профиля и используем для дальнейшего использования в card.
+let userId;
+
+Promise.all([
+  api.setProfileInfo(),
+  api.getInitialCards()
+])
+.then(([userObject, cardOdject]) => {
+  userProfileInfo.setUserInfo(userObject);
+  userProfileInfo.setUserAvatar(userObject);
+  userId = userObject._id;
+  cardsList.renderItems(cardOdject.reverse());
 })
-.catch(err => console.log(`Невозможно загрузить карточкию. Ошибка: ${err})`));
+.catch(err => console.log(`Невозможо загрузить данные страницы. Ошибка: ${err})`));
 
 // добавление новой карточки
 const popupAddCard = new PopupWithForm('.popup_type_add-card', (formValues) => {
@@ -85,7 +87,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add-card', (formValues) => {
   })
   .catch(err => console.log(`Невозможно добавить новую карточку. Ошибка: ${err})`))
   .finally(() => popupAddCard.setLoadingText(false));
-})
+});
 
 const popupPhotoView = new PopupWithImage('.popup_type_photo');
 
@@ -97,7 +99,7 @@ const popupEditProfileForm = new PopupWithForm('.popup_type_edit-profile', (form
   })
   .catch(err => console.log(`Невозможно обновить данные профиля. Ошибка: ${err})`))
   .finally(() => popupAddCard.setLoadingText(false));
-})
+});
 
 const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', (formValues) => {
   api.editProfileAvatar(formValues).then((res) => {
@@ -129,12 +131,9 @@ buttonPopupAddCardOpen.addEventListener('click', function() {
 buttonPopupEditAvatarOpen.addEventListener('click', function() {
   popupEditAvatar.open();
   formEditAvatarValidation.resetValidation();
-})
+});
 
 // валидация форм
 formEditProfileValidation.enableValidation();
 formAddCardValidation.enableValidation();
 formEditAvatarValidation.enableValidation();
-
-
-

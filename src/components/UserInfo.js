@@ -17,7 +17,6 @@ export default class UserInfo {
   setUserInfo(dataUserInfo) {
     this._profileNameElement.textContent = dataUserInfo.name;
     this._profileJobElement.textContent = dataUserInfo.about;
-    this._profileNameElement.setAttribute('id', dataUserInfo._id);
   }
 
   setUserAvatar(dataUserInfo) {
