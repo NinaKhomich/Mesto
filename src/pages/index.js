@@ -98,7 +98,7 @@ const popupEditProfileForm = new PopupWithForm('.popup_type_edit-profile', (form
     popupEditProfileForm.close();
   })
   .catch(err => console.log(`Невозможно обновить данные профиля. Ошибка: ${err})`))
-  .finally(() => popupAddCard.setLoadingText(false));
+  .finally(() => popupEditProfileForm.setLoadingText(false));
 });
 
 const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', (formValues) => {
@@ -107,7 +107,7 @@ const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', (formValues
     popupEditAvatar.close();
   })
   .catch(err => console.log(`Невозможно обновить фото профиля. Ошибка: ${err})`))
-  .finally(() => popupAddCard.setLoadingText(false));
+  .finally(() => popupEditAvatar.setLoadingText(false));
 });
 
 // открытие попапа редактирования профиля
