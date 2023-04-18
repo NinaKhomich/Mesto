@@ -5,7 +5,7 @@
 .header{border-bottom:1px solid rgba(84,84,84,.7);margin:0 auto;padding:28px 27px 27px}@media screen and (min-width:1280px){.header{max-width:880px;padding:45px 0 37px}}
 .header__logo{width:104px}@media screen and (min-width:1280px){.header__logo{width:142px}}
 .profile{align-items:center;display:flex;flex-direction:column;margin-bottom:36px}@media screen and (min-width:768px){.profile{flex-direction:row;margin-bottom:50px}}
-.profile__avatar-box{height:120px;position:relative}.profile__avatar-box:hover:after{background:rgba(0,0,0,.8) url(images/editAvatar.0293b678a249b7e9cc3f.svg) no-repeat 50%;content:"";cursor:pointer;height:100%;left:0;position:absolute;top:0;width:100%}
+.profile__avatar-box{height:120px;position:relative}.profile__avatar-box:after{background:rgba(0,0,0,.8) url(images/editAvatar.0293b678a249b7e9cc3f.svg) no-repeat 50%;content:"";cursor:pointer;height:100%;left:0;opacity:0;position:absolute;top:0;transition:opacity .6s;width:100%}.profile__avatar-box:hover:after{opacity:1}
 .profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
 .profile__info{align-items:center;display:grid;grid-template-areas:"title button" "subtitle subtitle";margin-bottom:33px;margin-top:26px;text-align:center}@media screen and (min-width:768px){.profile__info{margin-bottom:0;margin-left:30px;margin-top:0;max-width:336px;text-align:left}}
 .profile__title{font-size:27px;font-weight:500;grid-area:title;line-height:33px;margin:0 10px 0 28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (min-width:768px){.profile__title{margin-left:0;margin-right:18px}}@media screen and (min-width:1280px){.profile__title{font-size:42px;line-height:48px}}
