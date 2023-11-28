@@ -19,4 +19,4 @@
 * настройка и работа с Webpack,
 * работа с Git.
 
-[Ссылка на GitHub Pages](https://ninakhomich.github.io/second-project-gh-pages/)
+[Ссылка на GitHub Pages](https://ninakhomich.github.io/Mesto/)
