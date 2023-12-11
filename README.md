@@ -29,7 +29,7 @@ git clone https://github.com/NinaKhomich/Mesto.git
 
 * войти в папку проекта
 
-cd movies-explorer-frontend
+cd mesto
 
 * установить зависимости
 
