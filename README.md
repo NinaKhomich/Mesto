@@ -25,7 +25,7 @@
 
 * клонировать репозиторий
 
-git clone https://github.com/NinaKhomich/movies-explorer-frontend.git
+git clone https://github.com/NinaKhomich/Mesto.git
 
 * войти в папку проекта
 
